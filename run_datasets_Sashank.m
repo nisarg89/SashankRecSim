@@ -46,9 +46,9 @@ accStats = zeros(numDatasets,npVote,npAcc,nVertexSim,nSim,numMech);  % Accuracy
 skippedDatasets = false(1,numDatasets);
 disconnectedDatasets = false(1,numDatasets);
 
-% if isempty(gcp('nocreate')) % Create parallel pool if it doesn't already exist
-%     parpool;
-% end
+if isempty(gcp('nocreate')) % Create parallel pool if it doesn't already exist
+    parpool(15);
+end
 
 for datasetID=1:numDatasets
     % Get the graph
