@@ -3,6 +3,8 @@ nVertexSim = 100; % Number of vertices to average over
 nSim = 100;   % Number of samples for voters
 nInSim = 100; % Number of samples of votes to determine accuracy (fast, given weights are pre-computed)
 
+addpath('./matlab_bgl');
+
 maxNumCompThreads(15);
 
 % Where to store the results
