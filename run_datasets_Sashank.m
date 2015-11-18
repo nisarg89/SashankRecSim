@@ -1,11 +1,11 @@
 % Run Simulations
-nVertexSim = 100; % Number of vertices to average over
-nSim = 100;   % Number of samples for voters
-nInSim = 100; % Number of samples of votes to determine accuracy (fast, given weights are pre-computed)
+nVertexSim = 40; % Number of vertices to average over
+nSim = 40;   % Number of samples for voters
+nInSim = 40; % Number of samples of votes to determine accuracy (fast, given weights are pre-computed)
 
 addpath('./matlab_bgl');
 
-maxNumCompThreads(15);
+maxNumCompThreads(25);
 
 % Where to store the results
 resultsDir = './RecResults';
@@ -20,6 +20,7 @@ tmp = dir(datasetDir);
 tmp = {tmp.name};
 tmp = tmp(I);
 datasets = tmp(3:end);
+datasets = flip(datasets);
 clear tmp;
 % datasets = datasets(~strcmp(datasets,'out.maayan-vidal'));
 numDatasets = length(datasets);
@@ -49,7 +50,7 @@ skippedDatasets = false(1,numDatasets);
 disconnectedDatasets = false(1,numDatasets);
 
 if isempty(gcp('nocreate')) % Create parallel pool if it doesn't already exist
-    parpool(15);
+    parpool(25);
 end
 
 for datasetID=1:numDatasets
